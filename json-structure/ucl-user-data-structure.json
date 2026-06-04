@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-structure/ucl-user-data-structure.json",
+  "name": "UserData",
+  "type": "object",
+  "description": "JSON Structure for the UCL API 'user_data' object, derived from the UCL API OpenAPI 3.0 description.",
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "email": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "cn": {
+      "type": "string"
+    },
+    "given_name": {
+      "type": "string"
+    },
+    "upi": {
+      "type": "string"
+    },
+    "scope_number": {
+      "type": "number"
+    },
+    "is_student": {
+      "type": "boolean"
+    }
+  }
+}

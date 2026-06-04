@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "surveys": [
+    {
+      "id": 46,
+      "name": "UCL Institute of Education Library",
+      "active": true,
+      "start_time": "09:00",
+      "end_time": "17:00",
+      "staff_survey": 0,
+      "maps": [
+        {
+          "id": 114,
+          "name": "Level 4",
+          "image_id": 123
+        }
+      ],
+      "location": {
+        "coordinates": {
+          "lat": "51.522897",
+          "lng": "-0.127864"
+        },
+        "address": [
+          null
+        ]
+      }
+    }
+  ]
+}

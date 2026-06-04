@@ -143,6 +143,20 @@ common:
     url: https://github.com/uclapi/uclapi
   - type: OpenAPI
     url: https://github.com/uclapi/uclapi-openapi
+  - type: OpenAPI
+    url: openapi/ucl-uclapi.yaml
+  - type: JSONSchema
+    url: json-schema/
+  - type: JSONStructure
+    url: json-structure/
+  - type: Examples
+    url: examples/
+  - type: Rules
+    url: rules/ucl-rules.yml
+  - type: Vocabulary
+    url: vocabulary/ucl-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/ucl-context.jsonld
   - type: LinkedIn
     url: https://uk.linkedin.com/company/uclapi
   - type: Plans

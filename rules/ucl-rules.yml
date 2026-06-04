@@ -1,0 +1,55 @@
+extends: []
+formats:
+  - oas3
+documentationUrl: https://uclapi.com/docs
+description: >-
+  Spectral ruleset encoding patterns observed in the UCL API OpenAPI 3.0
+  description. The UCL API is a token-authenticated, read-mostly platform that
+  returns an `ok` boolean envelope on most responses and is documented at
+  https://uclapi.com/docs.
+rules:
+  ucl-info-contact:
+    description: API info should expose the UCL API team contact.
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  ucl-info-license:
+    description: API info should declare a license (UCL API is MIT licensed).
+    severity: warn
+    given: $.info
+    then:
+      field: license
+      function: truthy
+  ucl-operation-tags:
+    description: Every operation should be tagged with its UCL service area.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  ucl-operation-200:
+    description: Every operation should document a 200 success response.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].responses
+    then:
+      field: "200"
+      function: truthy
+  ucl-paths-lowercase:
+    description: UCL API paths are lowercase service segments (e.g. /roombookings, /workspaces).
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-z0-9/_{}.]+$"
+  ucl-token-described:
+    description: >-
+      UCL API operations are authenticated with a `token` query parameter;
+      operations should describe parameters.
+    severity: info
+    given: $.paths[*][get].parameters[*]
+    then:
+      field: description
+      function: truthy

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-structure/ucl-person-structure.json",
+  "name": "Person",
+  "type": "object",
+  "description": "JSON Structure for the UCL API 'person' object, derived from the UCL API OpenAPI 3.0 description.",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    }
+  }
+}

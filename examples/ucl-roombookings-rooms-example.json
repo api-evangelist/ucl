@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "rooms": [
+    {
+      "roomname": "Wilkins Building (Main Building) Portico",
+      "roomid": "Z4",
+      "siteid": "005",
+      "sitename": "Main Building",
+      "capacity": 50,
+      "classification": "SS",
+      "classification_name": "Social Space",
+      "automated": "N",
+      "location": {
+        "address": [
+          null
+        ],
+        "coordinates": {
+          "lat": "51.524699",
+          "lng": "-0.13366"
+        }
+      }
+    }
+  ]
+}

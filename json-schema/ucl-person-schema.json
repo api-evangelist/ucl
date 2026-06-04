@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-schema/ucl-person-schema.json",
+  "title": "UCL API person",
+  "description": "JSON Schema for the UCL API 'person' object, derived from the UCL API OpenAPI 3.0 description.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "examples": [
+        "Jane Doe"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "examples": [
+        "Student"
+      ]
+    },
+    "department": {
+      "type": "string",
+      "examples": [
+        "Depet of Med Phys & Biomedical Eng"
+      ]
+    },
+    "email": {
+      "type": "string",
+      "examples": [
+        "jane.doe.17@ucl.ac.uk"
+      ]
+    }
+  }
+}

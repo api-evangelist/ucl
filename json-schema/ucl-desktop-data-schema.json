@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-schema/ucl-desktop-data-schema.json",
+  "title": "UCL API desktop_data",
+  "description": "JSON Schema for the UCL API 'desktop_data' object, derived from the UCL API OpenAPI 3.0 description.",
+  "type": "object",
+  "properties": {
+    "room_status": {
+      "type": "string",
+      "examples": [
+        "Room available all day. For accurate Library opening times, please check the Library Opening Hours website http://www.ucl.ac.uk/library/opening"
+      ]
+    },
+    "total_seats": {
+      "type": "string",
+      "examples": [
+        "35"
+      ]
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "string",
+          "examples": [
+            "51.523481"
+          ]
+        },
+        "room_id": {
+          "type": "string",
+          "examples": [
+            "C14"
+          ]
+        },
+        "postcode": {
+          "type": "string",
+          "examples": [
+            "WC1E 6BT"
+          ]
+        },
+        "address": {
+          "type": "string",
+          "examples": [
+            "Malet Place, Gower Street"
+          ]
+        },
+        "room_name": {
+          "type": "string",
+          "examples": [
+            "Ground-Ground floor - Public"
+          ]
+        },
+        "building_name": {
+          "type": "string",
+          "examples": [
+            "DMS Watson Science Library"
+          ]
+        },
+        "longitude": {
+          "type": "string",
+          "examples": [
+            "-0.132571"
+          ]
+        }
+      }
+    },
+    "free_seats": {
+      "type": "string",
+      "examples": [
+        "28"
+      ]
+    }
+  }
+}

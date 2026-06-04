@@ -1,0 +1,88 @@
+vocabulary:
+  name: UCL API Vocabulary
+  description: >-
+    Controlled vocabulary of the core domain terms used across the UCL API
+    platform (uclapi.com), derived from the UCL API OpenAPI 3.0 description.
+    Covers room bookings, timetables, people search, desktop resources, library
+    workspaces, and OAuth identity.
+  version: 1.0.0
+  terms:
+    - term: token
+      definition: >-
+        A long alphanumeric credential uniquely identifying an app requesting
+        data from the UCL API. Generic tokens access non-personal data; OAuth
+        tokens access a user's personal data.
+      tags: [auth, oauth]
+    - term: room
+      definition: >-
+        A physical bookable space at UCL identified by roomid and siteid, with a
+        name, capacity, classification, and geographic location.
+      tags: [roombookings, facilities]
+    - term: booking
+      definition: >-
+        A reserved time slot for a UCL room, with start_time, end_time, contact,
+        description, and the associated room and site identifiers.
+      tags: [roombookings]
+    - term: freeroom
+      definition: >-
+        A room reported as unbooked (empty) within a requested time window by the
+        /roombookings/freerooms endpoint.
+      tags: [roombookings]
+    - term: equipment
+      definition: >-
+        An item available in a room, described by a type code, description, and a
+        count of units.
+      tags: [roombookings, facilities]
+    - term: event
+      definition: >-
+        A scheduled teaching session in a timetable, with start_time, end_time,
+        duration, session type, title, module, and location.
+      tags: [timetable]
+    - term: module
+      definition: >-
+        A unit of study at UCL referenced by timetable events and by the module
+        timetable endpoints.
+      tags: [timetable, courses]
+    - term: timetable
+      definition: >-
+        A collection of teaching events keyed by date, returned for a person or a
+        specific module.
+      tags: [timetable]
+    - term: department
+      definition: >-
+        An academic department at UCL, used to filter timetable and analytics data.
+      tags: [timetable, organization]
+    - term: person
+      definition: >-
+        A staff directory entry returned by /search/people, with name, status,
+        department, and email.
+      tags: [search, directory, people]
+    - term: user_data
+      definition: >-
+        Personal profile data for an authenticated UCL user retrieved via OAuth,
+        including email, full_name, department, upi, cn, and is_student.
+      tags: [oauth, identity]
+    - term: desktop_data
+      definition: >-
+        Computer/desktop availability for a UCL room, reporting total_seats,
+        free_seats, room_status, and location.
+      tags: [resources, facilities]
+    - term: survey
+      definition: >-
+        A library study-space site monitored for occupancy, with opening times,
+        location, and a set of seating maps.
+      tags: [workspaces, library]
+    - term: map
+      definition: >-
+        A floor map for a workspace survey, optionally annotated with sensors.
+      tags: [workspaces, library]
+    - term: sensor
+      definition: >-
+        An occupancy sensor at a workspace seat, reporting occupied state and the
+        timestamp of its last trigger.
+      tags: [workspaces, sensors]
+    - term: scope
+      definition: >-
+        An OAuth permission declared by an app that specifies which UCL user data
+        the app may access.
+      tags: [oauth, auth]

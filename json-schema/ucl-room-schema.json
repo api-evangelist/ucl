@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-schema/ucl-room-schema.json",
+  "title": "UCL API room",
+  "description": "JSON Schema for the UCL API 'room' object, derived from the UCL API OpenAPI 3.0 description.",
+  "type": "object",
+  "properties": {
+    "roomname": {
+      "type": "string",
+      "examples": [
+        "Wilkins Building (Main Building) Portico"
+      ]
+    },
+    "roomid": {
+      "type": "string",
+      "examples": [
+        "Z4"
+      ]
+    },
+    "siteid": {
+      "type": "string",
+      "examples": [
+        "005"
+      ]
+    },
+    "sitename": {
+      "type": "string",
+      "examples": [
+        "Main Building"
+      ]
+    },
+    "capacity": {
+      "type": "string",
+      "examples": [
+        50
+      ]
+    },
+    "classification": {
+      "type": "string",
+      "examples": [
+        "SS"
+      ]
+    },
+    "classification_name": {
+      "type": "string",
+      "examples": [
+        "Social Space"
+      ]
+    },
+    "automated": {
+      "type": "string",
+      "examples": [
+        "N"
+      ]
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            [
+              "Gower Street",
+              "London",
+              "WC1E 6BT"
+            ]
+          ]
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number",
+              "examples": [
+                "51.524699"
+              ]
+            },
+            "lng": {
+              "type": "number",
+              "examples": [
+                "-0.13366"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-structure/ucl-room-structure.json",
+  "name": "Room",
+  "type": "object",
+  "description": "JSON Structure for the UCL API 'room' object, derived from the UCL API OpenAPI 3.0 description.",
+  "properties": {
+    "roomname": {
+      "type": "string"
+    },
+    "roomid": {
+      "type": "string"
+    },
+    "siteid": {
+      "type": "string"
+    },
+    "sitename": {
+      "type": "string"
+    },
+    "capacity": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "string"
+    },
+    "classification_name": {
+      "type": "string"
+    },
+    "automated": {
+      "type": "string"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number"
+            },
+            "lng": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

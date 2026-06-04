@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-schema/ucl-event-schema.json",
+  "title": "UCL API event",
+  "description": "JSON Schema for the UCL API 'event' object, derived from the UCL API OpenAPI 3.0 description.",
+  "type": "object",
+  "properties": {
+    "location": {
+      "$ref": "#/definitions/location"
+    },
+    "module": {
+      "$ref": "#/definitions/module"
+    },
+    "start_time": {
+      "type": "string",
+      "examples": [
+        "2016-09-02T09:00:00+00:00"
+      ]
+    },
+    "end_time": {
+      "type": "string",
+      "examples": [
+        "2016-09-02T10:00:00+00:00"
+      ]
+    },
+    "duration": {
+      "type": "integer",
+      "format": "int64",
+      "examples": [
+        60
+      ]
+    },
+    "session_type": {
+      "type": "string",
+      "examples": [
+        "L"
+      ]
+    },
+    "session_type_str": {
+      "type": "string",
+      "examples": [
+        "Lecture"
+      ]
+    },
+    "session_group": {
+      "type": "string",
+      "examples": [
+        ""
+      ]
+    },
+    "session_title": {
+      "type": "string",
+      "examples": [
+        "Computational Complexity A"
+      ]
+    },
+    "contact": {
+      "type": "string",
+      "examples": [
+        "Prof Robin Hirsch"
+      ]
+    }
+  },
+  "definitions": {
+    "location": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "Roberts Building 421"
+          ]
+        },
+        "address": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            [
+              "Torrington Place",
+              "London",
+              "WC1E 7JE"
+            ]
+          ]
+        },
+        "site_name": {
+          "type": "string",
+          "examples": [
+            "Roberts Building"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "examples": [
+            "CB"
+          ]
+        },
+        "capacity": {
+          "type": "integer",
+          "format": "int64",
+          "examples": [
+            94
+          ]
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "number",
+              "examples": [
+                null
+              ]
+            },
+            "lng": {
+              "type": "number",
+              "examples": [
+                null
+              ]
+            }
+          }
+        }
+      }
+    },
+    "module": {
+      "properties": {
+        "lecturer": {
+          "$ref": "#/definitions/lecturer"
+        },
+        "module_id": {
+          "type": "string",
+          "examples": [
+            "COMP3004"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "examples": [
+            "Computational Complexity"
+          ]
+        },
+        "department_id": {
+          "type": "string",
+          "examples": [
+            "COMPS_ENG"
+          ]
+        },
+        "department_name": {
+          "type": "string",
+          "examples": [
+            "Computer Science"
+          ]
+        }
+      }
+    }
+  }
+}

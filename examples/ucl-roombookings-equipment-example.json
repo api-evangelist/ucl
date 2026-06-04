@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "equipment": [
+    {
+      "type": "FFF",
+      "description": "Managed PC",
+      "units": 1
+    }
+  ]
+}

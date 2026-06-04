@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-schema/ucl-booking-schema.json",
+  "title": "UCL API booking",
+  "description": "JSON Schema for the UCL API 'booking' object, derived from the UCL API OpenAPI 3.0 description.",
+  "type": "object",
+  "properties": {
+    "slotid": {
+      "type": "number",
+      "examples": [
+        998503
+      ]
+    },
+    "end_time": {
+      "type": "string",
+      "examples": [
+        "2016-09-02T18:00:00+00:00"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "examples": [
+        "split weeks to assist rooming 29.06"
+      ]
+    },
+    "roomname": {
+      "type": "string",
+      "examples": [
+        "Torrington (1-19) 433"
+      ]
+    },
+    "siteid": {
+      "type": "number",
+      "examples": [
+        86.0
+      ]
+    },
+    "contact": {
+      "type": "string",
+      "examples": [
+        "Ms Leah Markwick"
+      ]
+    },
+    "weeknumber": {
+      "type": "number",
+      "examples": [
+        1
+      ]
+    },
+    "roomid": {
+      "type": "number",
+      "examples": [
+        "433"
+      ]
+    },
+    "start_time": {
+      "type": "string",
+      "examples": [
+        "2016-09-02T09:00:00+00:00"
+      ]
+    },
+    "phone": {
+      "type": "string",
+      "examples": [
+        "45699"
+      ]
+    }
+  }
+}

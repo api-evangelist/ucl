@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "ucl": "https://uclapi.com/vocab#",
+    "@vocab": "https://uclapi.com/vocab#",
+
+    "name": "schema:name",
+    "url": "schema:url",
+    "email": "schema:email",
+    "description": "schema:description",
+
+    "organization": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+
+    "Room": "schema:Room",
+    "roomname": "schema:name",
+    "roomid": "ucl:roomId",
+    "siteid": "ucl:siteId",
+    "sitename": "ucl:siteName",
+    "capacity": "schema:maximumAttendeeCapacity",
+    "classification": "ucl:classification",
+    "classification_name": "ucl:classificationName",
+
+    "location": "schema:location",
+    "address": "schema:address",
+    "coordinates": "schema:geo",
+    "lat": "schema:latitude",
+    "lng": "schema:longitude",
+    "latitude": "schema:latitude",
+    "longitude": "schema:longitude",
+    "postcode": "schema:postalCode",
+    "building_name": "ucl:buildingName",
+
+    "Booking": "schema:Reservation",
+    "slotid": "ucl:slotId",
+    "start_time": "schema:startTime",
+    "end_time": "schema:endTime",
+    "contact": "ucl:contact",
+    "phone": "schema:telephone",
+    "weeknumber": "ucl:weekNumber",
+
+    "Event": "schema:Event",
+    "duration": "schema:duration",
+    "session_type": "ucl:sessionType",
+    "session_title": "schema:name",
+    "module": "ucl:module",
+
+    "Person": "schema:Person",
+    "status": "ucl:status",
+    "department": "schema:department",
+    "full_name": "schema:name",
+    "given_name": "schema:givenName",
+    "upi": "ucl:upi",
+    "cn": "ucl:commonName",
+    "is_student": "ucl:isStudent",
+
+    "DesktopAvailability": "ucl:DesktopAvailability",
+    "total_seats": "ucl:totalSeats",
+    "free_seats": "ucl:freeSeats",
+    "room_status": "ucl:roomStatus",
+
+    "Survey": "ucl:Workspace",
+    "active": "ucl:active",
+    "maps": "ucl:maps",
+
+    "Sensor": "ucl:Sensor",
+    "occupied": "ucl:occupied",
+    "last_trigger_timestamp": "ucl:lastTriggerTimestamp"
+  },
+  "@type": "organization",
+  "name": "University College London",
+  "url": "https://www.ucl.ac.uk/",
+  "ucl:developerPortal": "https://uclapi.com/",
+  "ucl:apiDocumentation": "https://uclapi.com/docs"
+}

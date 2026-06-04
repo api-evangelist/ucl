@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-structure/ucl-booking-structure.json",
+  "name": "Booking",
+  "type": "object",
+  "description": "JSON Structure for the UCL API 'booking' object, derived from the UCL API OpenAPI 3.0 description.",
+  "properties": {
+    "slotid": {
+      "type": "number"
+    },
+    "end_time": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "roomname": {
+      "type": "string"
+    },
+    "siteid": {
+      "type": "number"
+    },
+    "contact": {
+      "type": "string"
+    },
+    "weeknumber": {
+      "type": "number"
+    },
+    "roomid": {
+      "type": "number"
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}

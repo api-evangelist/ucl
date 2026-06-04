@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ucl/main/json-schema/ucl-sensor-schema.json",
+  "title": "UCL API sensor",
+  "description": "JSON Schema for the UCL API 'sensor' object, derived from the UCL API OpenAPI 3.0 description.",
+  "type": "object",
+  "properties": {
+    "description_2": {
+      "type": "string",
+      "examples": [
+        ""
+      ]
+    },
+    "floor": {
+      "type": "string",
+      "examples": [
+        "False"
+      ]
+    },
+    "y_pos": {
+      "type": "string",
+      "examples": [
+        "14893.0"
+      ]
+    },
+    "description_3": {
+      "type": "string",
+      "examples": [
+        ""
+      ]
+    },
+    "device_type": {
+      "type": "string",
+      "examples": [
+        "Desk"
+      ]
+    },
+    "host_address": {
+      "type": "string",
+      "examples": [
+        "584"
+      ]
+    },
+    "building_name": {
+      "type": "string",
+      "examples": [
+        "IOE (20 B-Way)"
+      ]
+    },
+    "room_description": {
+      "type": "string",
+      "examples": [
+        ""
+      ]
+    },
+    "last_trigger_type": {
+      "type": "string",
+      "examples": [
+        "Occupied"
+      ]
+    },
+    "survey_id": {
+      "type": "string",
+      "examples": [
+        "46"
+      ]
+    },
+    "room_type": {
+      "type": "string",
+      "examples": [
+        "Open Plan"
+      ]
+    },
+    "room_name": {
+      "type": "string",
+      "examples": [
+        "324"
+      ]
+    },
+    "room_id": {
+      "type": "string",
+      "examples": [
+        "291"
+      ]
+    },
+    "location": {
+      "type": "string",
+      "examples": [
+        ""
+      ]
+    },
+    "survey_device_id": {
+      "type": "string",
+      "examples": [
+        "8420"
+      ]
+    },
+    "share_id": {
+      "type": "string",
+      "examples": [
+        "None"
+      ]
+    },
+    "x_pos": {
+      "type": "string",
+      "examples": [
+        "32432.0"
+      ]
+    },
+    "description_1": {
+      "type": "string",
+      "examples": [
+        ""
+      ]
+    },
+    "hardware_id": {
+      "type": "string",
+      "examples": [
+        "584001"
+      ]
+    },
+    "pir_address": {
+      "type": "string",
+      "examples": [
+        "1"
+      ]
+    },
+    "last_trigger_timestamp": {
+      "type": "string",
+      "examples": [
+        "2018-02-15T22:42:28+00:00"
+      ]
+    },
+    "occupied": {
+      "type": "boolean",
+      "examples": [
+        true
+      ]
+    }
+  }
+}

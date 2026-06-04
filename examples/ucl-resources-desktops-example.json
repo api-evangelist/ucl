@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "data": [
+    {
+      "room_status": "Room available all day. For accurate Library opening times, please check the Library Opening Hours website http://www.ucl.ac.uk/library/opening",
+      "total_seats": "35",
+      "location": {
+        "latitude": "51.523481",
+        "room_id": "C14",
+        "postcode": "WC1E 6BT",
+        "address": "Malet Place, Gower Street",
+        "room_name": "Ground-Ground floor - Public",
+        "building_name": "DMS Watson Science Library",
+        "longitude": "-0.132571"
+      },
+      "free_seats": "28"
+    }
+  ]
+}

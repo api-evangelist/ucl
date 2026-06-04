@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "timetable": {
+    "2016-09-02": [
+      {
+        "location": {
+          "name": "Roberts Building 421",
+          "address": [
+            null
+          ],
+          "site_name": "Roberts Building",
+          "type": "CB",
+          "capacity": 94,
+          "coordinates": {
+            "lat": null,
+            "lng": null
+          }
+        },
+        "module": {
+          "lecturer": {
+            "name": "HUNTER, Anthony (Prof)",
+            "department_name": "Computer Science",
+            "department_id": "COMPS_ENG",
+            "email": "ucachun@ucl.ac.yk"
+          },
+          "module_id": "COMP3004",
+          "name": "Computational Complexity",
+          "department_id": "COMPS_ENG",
+          "department_name": "Computer Science"
+        },
+        "start_time": "2016-09-02T09:00:00+00:00",
+        "end_time": "2016-09-02T10:00:00+00:00",
+        "duration": 60,
+        "session_type": "L",
+        "session_type_str": "Lecture",
+        "session_group": "",
+        "session_title": "Computational Complexity A",
+        "contact": "Prof Robin Hirsch"
+      }
+    ]
+  }
+}

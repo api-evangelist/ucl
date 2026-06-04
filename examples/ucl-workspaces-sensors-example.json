@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "sensors": [
+    {
+      "description_2": "",
+      "floor": "False",
+      "y_pos": "14893.0",
+      "description_3": "",
+      "device_type": "Desk",
+      "host_address": "584",
+      "building_name": "IOE (20 B-Way)",
+      "room_description": "",
+      "last_trigger_type": "Occupied",
+      "survey_id": "46",
+      "room_type": "Open Plan",
+      "room_name": "324",
+      "room_id": "291",
+      "location": "",
+      "survey_device_id": "8420",
+      "share_id": "None",
+      "x_pos": "32432.0",
+      "description_1": "",
+      "hardware_id": "584001",
+      "pir_address": "1",
+      "last_trigger_timestamp": "2018-02-15T22:42:28+00:00",
+      "occupied": true
+    }
+  ]
+}
