@@ -1,0 +1,161 @@
+---
+aid: ucl
+name: UCL
+description: >-
+  University College London (UCL) is a public research university in London, United
+  Kingdom, ranked #9 in the QS World University Rankings 2025. UCL has a notably
+  mature public developer footprint via UCL API (uclapi.com), a student-built but
+  Information Services Division (ISD) backed, open-source, OAuth2-secured platform
+  that exposes UCL digital services such as room bookings, timetables, staff search,
+  desktop/study-space availability, and workspaces. UCL also operates open-research
+  infrastructure including UCL Discovery (open-access repository) and the UCL
+  Research Data Repository (Figshare-powered). The UCL API is free to use and
+  requires UCL affiliation for authentication.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/ucl/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - United Kingdom
+  - Open Data
+  - Research
+  - Library
+  - Timetable
+apis:
+  - aid: ucl:roombookings
+    name: UCL API Room Bookings
+    description: >-
+      Fetch details of room bookings and free/empty rooms across UCL. Part of the
+      UCL API platform; data is refreshed roughly every twenty minutes from UCL
+      source systems.
+    humanURL: https://uclapi.com/docs
+    baseURL: https://uclapi.com/roombookings
+    tags: [ Room Bookings, Facilities, Education ]
+    properties:
+      - type: Documentation
+        url: https://uclapi.com/docs
+      - type: SignUp
+        url: https://uclapi.com/
+      - type: OpenAPI
+        url: https://github.com/uclapi/uclapi-openapi/blob/master/uclapi.json
+  - aid: ucl:timetable
+    name: UCL API Timetable
+    description: >-
+      Fetch personal and module timetables with various filters for departments,
+      modules, and student groups. Part of the UCL API platform.
+    humanURL: https://uclapi.com/docs
+    baseURL: https://uclapi.com/timetable
+    tags: [ Timetable, Courses, Education ]
+    properties:
+      - type: Documentation
+        url: https://uclapi.com/docs
+      - type: SignUp
+        url: https://uclapi.com/
+  - aid: ucl:search
+    name: UCL API Search
+    description: >-
+      Search for staff (people) directory information within UCL. Part of the UCL
+      API platform.
+    humanURL: https://uclapi.com/docs
+    baseURL: https://uclapi.com/search
+    tags: [ Search, Directory, People, Education ]
+    properties:
+      - type: Documentation
+        url: https://uclapi.com/docs
+      - type: SignUp
+        url: https://uclapi.com/
+  - aid: ucl:workspaces
+    name: UCL API Workspaces
+    description: >-
+      Fetch library study-space (workspace) availability, sensor data, and maps
+      throughout UCL; availability is updated approximately every two minutes.
+    humanURL: https://uclapi.com/docs
+    baseURL: https://uclapi.com/workspaces
+    tags: [ Workspaces, Library, Sensors, Education ]
+    properties:
+      - type: Documentation
+        url: https://uclapi.com/docs
+      - type: SignUp
+        url: https://uclapi.com/
+  - aid: ucl:resources
+    name: UCL API Resources
+    description: >-
+      Fetch desktop / computer availability throughout UCL. Part of the UCL API
+      platform.
+    humanURL: https://uclapi.com/docs
+    baseURL: https://uclapi.com/resources
+    tags: [ Resources, Facilities, Education ]
+    properties:
+      - type: Documentation
+        url: https://uclapi.com/docs
+      - type: SignUp
+        url: https://uclapi.com/
+  - aid: ucl:oauth
+    name: UCL API OAuth
+    description: >-
+      Authenticate and authorise applications for UCL users via OAuth2; tokens are
+      issued through the UCL login system and used across all UCL API services.
+    humanURL: https://uclapi.com/docs
+    baseURL: https://uclapi.com/oauth
+    tags: [ OAuth, Authentication, Identity, Education ]
+    properties:
+      - type: Documentation
+        url: https://uclapi.com/docs
+      - type: Authentication
+        url: https://uclapi.com/docs
+  - aid: ucl:discovery-oai
+    name: UCL Discovery (OAI-PMH)
+    description: >-
+      UCL Discovery is UCL's open-access institutional repository of research
+      outputs. It exposes an OAI-PMH metadata-harvesting endpoint (EPrints). Access
+      to the OAI endpoint was protected (HTTP 403) at the time of review.
+    humanURL: https://discovery.ucl.ac.uk/
+    tags: [ Repository, OAI-PMH, Open Access, Research ]
+    properties:
+      - type: Documentation
+        url: https://discovery.ucl.ac.uk/
+  - aid: ucl:research-data-repository
+    name: UCL Research Data Repository
+    description: >-
+      The UCL Research Data Repository is UCL's institutional data repository, built
+      on Figshare, used to deposit, archive, publish and assign DOIs to research
+      datasets and outputs. Figshare exposes a public REST/OAI API; specifics are
+      governed by the underlying Figshare platform.
+    humanURL: https://rdr.ucl.ac.uk/
+    tags: [ Research Data, Repository, Figshare, Open Data ]
+    properties:
+      - type: Documentation
+        url: https://rdr.ucl.ac.uk/
+common:
+  - type: Website
+    url: https://www.ucl.ac.uk/
+  - type: DeveloperPortal
+    url: https://uclapi.com/
+  - type: Documentation
+    url: https://uclapi.com/docs
+  - type: GitHub
+    url: https://github.com/uclapi
+  - type: SourceCode
+    url: https://github.com/uclapi/uclapi
+  - type: OpenAPI
+    url: https://github.com/uclapi/uclapi-openapi
+  - type: LinkedIn
+    url: https://uk.linkedin.com/company/uclapi
+  - type: Plans
+    url: plans/ucl-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/ucl-rate-limits.yml
+  - type: FinOps
+    url: finops/ucl-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'

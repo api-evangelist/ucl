@@ -1,0 +1,46 @@
+---
+name: UCL
+description: UCL public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/ucl/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 4
+    summary: >-
+      UCL has an unusually mature public developer presence for a university, driven
+      by UCL API (uclapi.com) — a student-built, ISD-backed, open-source, OAuth2
+      platform whose documentation portal (uclapi.com/docs) and dashboard (uclapi.com)
+      returned HTTP 200. A public OpenAPI spec confirms seven service groups: Room
+      Bookings, Timetable, Search, Resources, Workspaces, OAuth and Analytics; these
+      are catalogued without inventing endpoints. The api.uclapi.com host did not
+      resolve from this review environment (recorded status 0) likely due to network
+      egress restrictions, not a confirmed outage. UCL Discovery's OAI-PMH endpoint
+      returned 403 (protected). The Figshare-powered Research Data Repository
+      returned 202. No fabricated endpoints or credentials; access to UCL API
+      requires UCL affiliation and is free of charge.
+    endpoints:
+      - url: https://uclapi.com/
+        status: 200
+        note: UCL API developer portal / dashboard — live.
+      - url: https://uclapi.com/docs
+        status: 200
+        note: Documentation portal (JS app); services confirmed via OpenAPI spec.
+      - url: https://api.uclapi.com/roombookings/rooms
+        status: 0
+        note: API host did not resolve from review environment; likely egress restriction, not confirmed down.
+      - url: https://github.com/uclapi
+        status: 200
+        note: Official UCL API GitHub org — ~40 repos, open source.
+      - url: https://raw.githubusercontent.com/uclapi/uclapi-openapi/master/uclapi.json
+        status: 200
+        note: Public OpenAPI definition listing the API service groups.
+      - url: https://www.ucl.ac.uk/
+        status: 200
+        note: Official UCL institutional website.
+      - url: https://discovery.ucl.ac.uk/cgi/oai2
+        status: 403
+        note: OAI-PMH endpoint for UCL Discovery open-access repository — protected.
+      - url: https://rdr.ucl.ac.uk/
+        status: 202
+        note: UCL Research Data Repository (Figshare-powered) — responded.
