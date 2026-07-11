@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ucl-uclapi.yaml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - query
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: OAuthToken
+  type: apiKey
+  in: query
+  parameter: token
+  description: This API requires you to pass your OAuth2 token as a query parameter called 'token'.
+    Use the /authorize and /oauth/token endpoints to authorize a user and get this token.
+  sources:
+  - openapi/ucl-uclapi.yaml
+- name: OAuthSecurity
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: /authorise
+    tokenUrl: /token
+    scopes: 2
+  description: This API uses OAuth2 with the implicit grant flow. [More info](https://uclapi.com/docs#OAuthSecurity)
+  sources:
+  - openapi/ucl-uclapi.yaml
