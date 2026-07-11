@@ -131,6 +131,10 @@ apis:
       - type: Documentation
         url: https://rdr.ucl.ac.uk/
 common:
+  - type: Authentication
+    url: authentication/ucl-authentication.yml
+  - type: OAuthScopes
+    url: scopes/ucl-scopes.yml
   - type: Website
     url: https://www.ucl.ac.uk/
   - type: DeveloperPortal
@@ -145,6 +149,8 @@ common:
     url: https://github.com/uclapi/uclapi-openapi
   - type: OpenAPI
     url: openapi/ucl-uclapi.yaml
+  - url: https://medium.com/feed/ucl-api
+    type: Blog
   - type: JSONSchema
     url: json-schema/
   - type: JSONStructure
