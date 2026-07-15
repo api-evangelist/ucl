@@ -131,6 +131,8 @@ apis:
       - type: Documentation
         url: https://rdr.ucl.ac.uk/
 common:
+  - type: AgenticAccess
+    url: agentic-access/ucl-agentic-access.yml
   - type: DomainSecurity
     url: security/ucl-domain-security.yml
   - type: Authentication
