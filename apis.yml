@@ -248,6 +248,9 @@ apis:
   - type: Signup
     url: https://uclapi.com/
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/uclapi/uclapi/blob/master/LICENSE
   - type: AgenticAccess
     url: agentic-access/ucl-agentic-access.yml
   - type: DomainSecurity
@@ -269,7 +272,7 @@ common:
   - type: OpenAPI
     url: https://github.com/uclapi/uclapi-openapi
   - type: OpenAPI
-    url: openapi/ucl-uclapi.yaml
+    url: openapi/_original/ucl-uclapi.yaml
   - url: https://medium.com/feed/ucl-api
     type: Blog
   - type: JSONSchema
