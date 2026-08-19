@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UCL Analytics Search API",
+    "version": "1.0.0-oas3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns matching people and information about them. Note that this endpoint only returns a maximum of 20 matches. Following a change to UCL's systems in 2019, this endpoint only returns staff; students will not be returned through this API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/search/people",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Name of the person you are searching for."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns matching people and information about them. Note that this endpoint only returns a maximum of 20 matches. Following a change to UCL's systems in 2019, this endpoint only returns staff; students will not be returned through this API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

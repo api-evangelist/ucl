@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UCL Analytics Timetable API",
+    "version": "1.0.0-oas3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timetable",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the personal timetable of the user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/timetable/personal",
+            "params": [
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Client secret of the authenticating app"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "A date to filter entries by"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the personal timetable of the user."
+        },
+        {
+          "info": {
+            "name": "Returns a yearly timetable for the supplied modules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/timetable/bymodule",
+            "params": [
+              {
+                "name": "modules",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of the module codes you want the timetable of. You can supply either standard module codes (e.g. COMP0133), or full codes including the instance of the module (COMP0133-A7U-T1). Note that if you do not supply an instance, every single timetable entry will be returned including duplicates for the same module taught as multiple instances. It is recommended that a full module code including instance be supplied."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "A date to filter entries by"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a yearly timetable for the supplied modules."
+        },
+        {
+          "info": {
+            "name": "Returns a list of every department at UCL, along with its internal name. This can be used with the /data/modules endpoint to request information on all modules for a department.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/timetable/data/departments",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of every department at UCL, along with its internal name. This can be used with the /data/modules endpoint to request information on all modules for a department."
+        },
+        {
+          "info": {
+            "name": "Returns a list of every module taught by a given department at UCL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/timetable/data/modules",
+            "params": [
+              {
+                "name": "department",
+                "value": "",
+                "type": "query",
+                "description": "The department ID available from /data/departments."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of every module taught by a given department at UCL."
+        },
+        {
+          "info": {
+            "name": "Returns a list of every course taught by a given department at UCL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/timetable/data/courses",
+            "params": [
+              {
+                "name": "department",
+                "value": "",
+                "type": "query",
+                "description": "The department ID available from /data/departments."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of every course taught by a given department at UCL."
+        },
+        {
+          "info": {
+            "name": "Returns a list of every module taught on a given course at UCL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/timetable/data/courses/modules",
+            "params": [
+              {
+                "name": "course",
+                "value": "",
+                "type": "query",
+                "description": "The course ID available from /data/courses."
+              },
+              {
+                "name": "term_1",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances that are taught in term 1."
+              },
+              {
+                "name": "term_2",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances that are taught in term 2."
+              },
+              {
+                "name": "term_3",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating whether or not you want module instances that are taught in term 3."
+              },
+              {
+                "name": "term_1_next_year",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances that are taught in term 1 of the next academic year. This is used by admissions to calculate the end dates for non-standard programmes, and therefore is rare"
+              },
+              {
+                "name": "summer",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances that are timetabled in the summer. This can happen in some Postgraduate and Medicine teaching arrangements, but is rare. Note that this is NOT the same as the UCL Summer School."
+              },
+              {
+                "name": "year_long",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances where the course is timetabled to last for an entire academic year."
+              },
+              {
+                "name": "lsr",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances where the module is timetabled during the Late Summer Resit period. This is used internally by Examinations to timetable Late Summer Assessments (LSAs)."
+              },
+              {
+                "name": "is_summer_school",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances where the course is taught as part of the UCL Summer School (true) or standard academic teaching (false)."
+              },
+              {
+                "name": "session_1",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances where the module is taught in the first summer school session of this academic year's summer."
+              },
+              {
+                "name": "session_2",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like module instances where the module is taught in the second summer school session of this academic year's summer."
+              },
+              {
+                "name": "is_undergraduate",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would like undergraduate module instances."
+              },
+              {
+                "name": "only_available",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would only like available module instances (i.e. ones that are not compulsory for the course)."
+              },
+              {
+                "name": "only_compulsory",
+                "value": "",
+                "type": "query",
+                "description": "Boolean designating if you would only like compulsory module instances."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of every module taught on a given course at UCL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

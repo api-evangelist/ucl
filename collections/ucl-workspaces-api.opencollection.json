@@ -1,0 +1,281 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UCL Analytics Workspaces API",
+    "version": "1.0.0-oas3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns all UCL libraries with the Cad-Capture devices fitted to the seats. Each library is known as a 'survey', as it is a survey of the building. Within each survey there are multiple 'maps', each of which corresponds to a section such as a level, wing or separated library work area. Each sensor is tied to a specific map, and each map belongs to a survey.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/surveys",
+            "params": [
+              {
+                "name": "survey_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the surveys based on who they are designed for. Valid values of this parameter are `all` (no filtering), `student` (return only student surveys; this is the default) and `staff` (return only surveys representing work areas for UCL staff only). It is recommended that the default (student) is used in apps aimed at students, unless a specific reason to include a staff workspace is required."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all UCL libraries with the Cad-Capture devices fitted to the seats. Each library is known as a 'survey', as it is a survey of the building. Within each survey there are multiple 'maps', each of which corresponds to a section such as a level, wing or separated library work area. Each sensor is tied to a specific map, and each map belongs to a survey."
+        },
+        {
+          "info": {
+            "name": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/sensors",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "query",
+                "description": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states."
+              },
+              {
+                "name": "return_states",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to return the latest trigger state of each sensor. Defaults to false. For live data, set this to true."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states"
+        },
+        {
+          "info": {
+            "name": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/sensors/averages/time",
+            "params": [
+              {
+                "name": "days",
+                "value": "",
+                "type": "query",
+                "description": "An integer number of days (either 1, 7 or 30) from which to deliver average data. The format of the data returned does not change based on this value, but the actual averaged figures do. When days is 1, the API will return the data from the previous complete day; when days is 7 the API will return data from the last week and when it is set to 30 the API will return data from the last 30 days, which is approx. one month."
+              },
+              {
+                "name": "survey_ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited list of Survey IDs. If this parameter is not supplied, historical data for every survey is returned."
+              },
+              {
+                "name": "survey_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the surveys based on who they are designed for. Valid values of this parameter are `all` (no filtering), `student` (return only student surveys; this is the default) and `staff` (return only surveys representing work areas for UCL staff only). It is recommended that the default (student) is used in apps aimed at students, unless a specific reason to include a staff workspace is required."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states"
+        },
+        {
+          "info": {
+            "name": "Replies with the timestamp of the last time the sensor data was updated for a given survey. This allows integrations that poll the API to save on request time by only requesting the full set of sensor information for a survey once it has been updated.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/sensors/lastupdated",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "query",
+                "description": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Replies with the timestamp of the last time the sensor data was updated for a given survey. This allows integrations that poll the API to save on request time by only requesting the full set of sensor information for a survey once it has been updated."
+        },
+        {
+          "info": {
+            "name": "This endpoint summarises, with a one-minute accuracy, the number of seats within each library region that are free and occupied. It is best suited to integrations which show cumulative, live data. Developers can use this endpoint to avoid making many parallel or sequential requests to fetch survey sensor counts.\nThis endpoint takes into account UCL's thirty minute rule, which allows students to leave their seat unattended for up to thirty minutes at a time (e.g. to use the bathroom or get food). This means that the Summary endpoint may return a lower number of available seats when compared to reality if many students leave the library within a short period of time. The UCL Library's website and the UCL Go! mobile application both follow this rule, so your app or integration should have parity with first party data sources by using the UCL API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/sensors/summary",
+            "params": [
+              {
+                "name": "survey_ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma delimited list of Survey IDs. If this parameter is not supplied, historical data for every survey is returned."
+              },
+              {
+                "name": "survey_filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the surveys based on who they are designed for. Valid values of this parameter are `all` (no filtering), `student` (return only student surveys; this is the default) and `staff` (return only surveys representing work areas for UCL staff only). It is recommended that the default (student) is used in apps aimed at students, unless a specific reason to include a staff workspace is required."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint summarises, with a one-minute accuracy, the number of seats within each library region that are free and occupied. It is best suited to integrations which show cumulative, live data. Developers can use this endpoint to avoid making many parallel or sequential requests to fetch survey sensor counts.\nThis endpoint takes into account UCL's thirty minute rule, which allows students to leave their seat unattended for up to thirty minutes at a time (e.g. to use the bathroom or get food)."
+        },
+        {
+          "info": {
+            "name": "Returns the image specified by the passed in image_id. Image IDs are provided by the /workspaces/surveys endpoint within the array of maps. Each map has an image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/images/map",
+            "params": [
+              {
+                "name": "image_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the image to obtain."
+              },
+              {
+                "name": "image_format",
+                "value": "",
+                "type": "query",
+                "description": "The format of the response. This can either be base64, which returns a JSON object as shown in the example, or raw which will respond with a raw image. In the case of a raw image, the Content-Type header will define the data type, such as image/png."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the image specified by the passed in image_id. Image IDs are provided by the /workspaces/surveys endpoint within the array of maps. Each map has an image."
+        },
+        {
+          "info": {
+            "name": "Takes Survey ID and Map ID as parameters and displays a dynamically generated SVG map, correct as of the time of the API call (aside from caching overhead), showing the map's plan image with a circle overlaid on each seat. This circle is coloured based on whether the seat is occupied or absent (e.g. it's free).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/workspaces/images/map/live",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "",
+                "type": "query",
+                "description": "Provides a list of every sensor within every map in a survey/library. It can optionally provide the current state of a sensor (e.g. Occupied / Absent), but by default it will only list the sensors without their states."
+              },
+              {
+                "name": "map_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the library's survey which contains the map you want to obtain."
+              },
+              {
+                "name": "image_scale",
+                "value": "",
+                "type": "query",
+                "description": "The SVG image's scale. The default is 0.02. The scale is implemented as an SVG transform scale, and is applied to both the x and the y axes of the image."
+              },
+              {
+                "name": "circle_radius",
+                "value": "",
+                "type": "query",
+                "description": "The size of the circle. This must be a positive float value. The default is 128."
+              },
+              {
+                "name": "absent_colour",
+                "value": "",
+                "type": "query",
+                "description": "TThe colour of the circle designating a free seat. This must be provided as a hex colour code, including the preceeding"
+              },
+              {
+                "name": "occupied_colour",
+                "value": "",
+                "type": "query",
+                "description": "The colour of the circle designating a taken, or occupied, seat. This must be provided as a hex colour code, including the preceeding"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Takes Survey ID and Map ID as parameters and displays a dynamically generated SVG map, correct as of the time of the API call (aside from caching overhead), showing the map's plan image with a circle overlaid on each seat. This circle is coloured based on whether the seat is occupied or absent (e.g. it's free)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

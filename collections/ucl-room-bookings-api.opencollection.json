@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UCL Analytics Room Bookings API",
+    "version": "1.0.0-oas3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Room Bookings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns rooms and information about them. If you don’t specify any query parameters besides the token, all rooms will be returned.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/roombookings/rooms",
+            "params": [
+              {
+                "name": "roomname",
+                "value": "",
+                "type": "query",
+                "description": "Every site (building) has a name. In some cases this is contained in the roomname as well."
+              },
+              {
+                "name": "roomid",
+                "value": "",
+                "type": "query",
+                "description": "The room ID (not to be confused with the roomname)."
+              },
+              {
+                "name": "siteid",
+                "value": "",
+                "type": "query",
+                "description": "Every room is inside a site (building). All sites have IDs."
+              },
+              {
+                "name": "sitename",
+                "value": "",
+                "type": "query",
+                "description": "Every site (building) has a name. In some cases this is contained in the roomname as well."
+              },
+              {
+                "name": "classification",
+                "value": "",
+                "type": "query",
+                "description": "The room type ID"
+              },
+              {
+                "name": "capacity",
+                "value": "",
+                "type": "query",
+                "description": "Every room has a set capacity of how many people can fit inside it. When supplied, all rooms with the given capacity or greater will be returned."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns rooms and information about them. If you don’t specify any query parameters besides the token, all rooms will be returned."
+        },
+        {
+          "info": {
+            "name": "Returns the results to a bookings or space availability query. It returns a paginated list of bookings. Note that this endpoint only returns publicly displayed bookings. Departmental bookings are not included.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/roombookings/bookings",
+            "params": [
+              {
+                "name": "roomname",
+                "value": "",
+                "type": "query",
+                "description": "Every site (building) has a name. In some cases this is contained in the roomname as well."
+              },
+              {
+                "name": "roomid",
+                "value": "",
+                "type": "query",
+                "description": "The room ID (not to be confused with the roomname)."
+              },
+              {
+                "name": "start_datetime",
+                "value": "",
+                "type": "query",
+                "description": "Start datetime of the booking. Returns bookings with a start_datetime after the one supplied. Follows the ISO 8601 formatting standard."
+              },
+              {
+                "name": "end_datetime",
+                "value": "",
+                "type": "query",
+                "description": "End datetime of the booking. Returns bookings with an end_datetime before the one supplied. Follows the ISO 8601 formatting standard."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date of the bookings you need, in the format YYYYMMDD. Returns bookings occurring on this day. This query parameter is only considered when end_datetime and start_datetime are not supplied."
+              },
+              {
+                "name": "siteid",
+                "value": "",
+                "type": "query",
+                "description": "Every room is inside a site (building). All sites have IDs."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Describes what the booking is. Could contain a module code (for example WIBRG005) or just the type of activity (for example Lecture)."
+              },
+              {
+                "name": "contact",
+                "value": "",
+                "type": "query",
+                "description": "The name of the person who made the booking. Substrings of the contact name can be used, Queries for Mark will include Mark Herbster. Sometimes, a society or student group may be the contact for a booking."
+              },
+              {
+                "name": "results_per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of bookings returned per page. Maximum allowed value is 1000. Defaults to 1000."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the results to a bookings or space availability query. It returns a paginated list of bookings. Note that this endpoint only returns publicly displayed bookings. Departmental bookings are not included."
+        },
+        {
+          "info": {
+            "name": "Returns any equipment/feature information about a specific room. So, for example whether there is a Whiteboard or a DVD Player in the room. A full example can be seen here.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/roombookings/equipment",
+            "params": [
+              {
+                "name": "roomid",
+                "value": "",
+                "type": "query",
+                "description": "The room ID (not to be confused with the roomname)."
+              },
+              {
+                "name": "siteid",
+                "value": "",
+                "type": "query",
+                "description": "Every room is inside a site (building). All sites have IDs."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns any equipment/feature information about a specific room. So, for example whether there is a Whiteboard or a DVD Player in the room. A full example can be seen here."
+        },
+        {
+          "info": {
+            "name": "Given a start time and an end time, this endpoint returns all rooms which are free in that time range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/roombookings/freerooms",
+            "params": [
+              {
+                "name": "start_datetime",
+                "value": "",
+                "type": "query",
+                "description": "Start datetime of the booking. Returns bookings with a start_datetime after the one supplied. Follows the ISO 8601 formatting standard."
+              },
+              {
+                "name": "end_datetime",
+                "value": "",
+                "type": "query",
+                "description": "End datetime of the booking. Returns bookings with an end_datetime before the one supplied. Follows the ISO 8601 formatting standard."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Given a start time and an end time, this endpoint returns all rooms which are free in that time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

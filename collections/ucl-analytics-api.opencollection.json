@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UCL Analytics API",
+    "version": "1.0.0-oas3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the total number of requests made from a given token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/dashboard/api/analytics/total",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the total number of requests made from a given token"
+        },
+        {
+          "info": {
+            "name": "Gets the remaining daily quota for a given token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/dashboard/api/analytics/quota",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the remaining daily quota for a given token"
+        },
+        {
+          "info": {
+            "name": "Gets all services and their popularity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/dashboard/api/analytics/services"
+          },
+          "docs": "Gets all services and their popularity"
+        },
+        {
+          "info": {
+            "name": "Gets all methods for a given service and their popularity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/dashboard/api/analytics/methods",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query",
+                "description": "The service to check the popularity of methods for"
+              }
+            ]
+          },
+          "docs": "Gets all methods for a given service and their popularity"
+        },
+        {
+          "info": {
+            "name": "Gets the total number of users for a given app token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/dashboard/api/analytics/oauth/total",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date to filter by"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date to filter by"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the total number of users for a given app token"
+        },
+        {
+          "info": {
+            "name": "Gets the total number of users for a given app token, by department",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/dashboard/api/analytics/oauth/total_by_dept",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Gets the total number of users for a given app token, by department"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UCL Analytics OAuth API",
+    "version": "1.0.0-oas3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authorises a user against the API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/oauth/authorise",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Client ID of the authenticating app."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "OAuth (random) state."
+              }
+            ]
+          },
+          "docs": "This endpoint should be used to authorise a user against the API.\n\nIt will perform a redirect if the user successfully logged in and accepted/denied the request.\n\nSee the below code samples for how you might implement this in your code.\n\nPython:\n```python\n url = \"https://uclapi.com/oauth/authorise/?client_id=123&state=1\"\n\n'''\n  in a desktop app, script, or for testing\n'''\nimport webbrowser\nwebbrowser.open_new(url) \n# note that you will also need some way receive the callback\n# this can be done v"
+        },
+        {
+          "info": {
+            "name": "A token will be generated which your app can use to get user’s personal data in JSON format from the OAuthSecurity/user/data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/oauth/token",
+            "params": [
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Client secret of the authenticating app"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Client ID of the authenticating app."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "Secret code obtained from the authorise endpoint."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "This endpoint should be used to obtain a token for use in the other API endpoints.\n\nSee the below code samples for how you might implement this in your code.\n\nPython:\n```python\nimport requests\n\nparams = {\n  \"client_id\": \"123.456\",\n  \"code\": \"1\",\n  \"client_secret\": \"secret\",\n}\nr = requests.get(\"https://uclapi.com/oauth/token\", params=params)\nprint(r.json())\n```\n\nShell:\n```shell\ncurl -G https://uclapi.com/oauth/token -d code=mysecretcode -d client_id=123.456 -d client_secret=secret\n```\n\nJavaScript"
+        },
+        {
+          "info": {
+            "name": "Returns personal data on a student at UCL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/oauth/user/data",
+            "params": [
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Client secret of the authenticating app"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns personal data on a student at UCL."
+        },
+        {
+          "info": {
+            "name": "You can use the oauth/user/data endpoint to find out whether the user is a student before you call this endpoint. If you call this endpoint and the user is not a student, an error will be returned.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uclapi.com/oauth/user/studentnumber",
+            "params": [
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Client secret of the authenticating app"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/authorise",
+              "accessTokenUrl": "/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "You can use the oauth/user/data endpoint to find out whether the user is a student before you call this endpoint. If you call this endpoint and the user is not a student, an error will be returned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
