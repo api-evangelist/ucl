@@ -1,16 +1,23 @@
----
 aid: ucl
 name: UCL
-description: >-
-  University College London (UCL) is a public research university in London, United
-  Kingdom, ranked #9 in the QS World University Rankings 2025. UCL has a notably
-  mature public developer footprint via UCL API (uclapi.com), a student-built but
-  Information Services Division (ISD) backed, open-source, OAuth2-secured platform
-  that exposes UCL digital services such as room bookings, timetables, staff search,
-  desktop/study-space availability, and workspaces. UCL also operates open-research
-  infrastructure including UCL Discovery (open-access repository) and the UCL
-  Research Data Repository (Figshare-powered). The UCL API is free to use and
-  requires UCL affiliation for authentication.
+description: 'University College London (UCL) is a public research university in London, United Kingdom, and
+  a member of the Russell Group. UCL is the clearest illustration in this cohort of why a university is a federation
+  of buyers rather than a producer of APIs. Its flagship developer surface, UCL API (uclapi.com) — a student-built,
+  ISD-backed, open-source, OAuth2-secured platform exposing room bookings, timetables, staff search, desktop
+  and study-space availability and workspaces — was genuinely UCL''s own engineering, and as of 2026-08-19
+  its entire estate is gone: uclapi.com, api.uclapi.com, docs.uclapi.com and status.uclapi.com all fail to
+  complete a TCP connection on either port 80 or 443. The source repository remains public and unarchived (github.com/uclapi/uclapi,
+  last pushed 2026-05-06); the OpenAPI repository was archived in 2021. What remains is almost entirely bought,
+  not built. UCL Discovery, the open-access institutional repository, is the one institution-operated machine-readable
+  surface left standing: EPrints on UCL''s own domain with an OAI-PMH endpoint, currently behind a Cloudflare
+  challenge. Everything else is a tenancy — the UCL Research Data Repository is Figshare (rdr.ucl.ac.uk CNAMEs
+  to figshare.com, UCL''s data addressed as institution=549 on Figshare''s shared host), UCL Profiles is Symplectic
+  Elements (profiles.ucl.ac.uk CNAMEs to ucl.discovery.symplectic.org), library discovery is Ex Libris Primo
+  VE, site search is Funnelback, and even UCL''s UK Access Management Federation identity provider — the one
+  class of surface a university is supposed to operate by definition — resolves its SAML SSO to OpenAthens
+  rather than to a UCL host. UCL owns the entityID, the ucl.ac.uk scope and the DataCite DOI prefix 10.5522;
+  vendors run the services underneath them. No central developer portal, no open data portal and no publicly
+  callable institution-operated API were found in this pass.'
 type: Index
 accessModel:
   pricing: free
@@ -30,276 +37,335 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ucl.png
 url: https://raw.githubusercontent.com/api-evangelist/ucl/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - United Kingdom
-  - Open Data
-  - Research
-  - Library
-  - Timetable
+- Education
+- Higher Education
+- University
+- United Kingdom
+- London
+- Russell Group
+- Research
+- Open Access
+- Research Data
+- Research Repository
+- Library
+- Identity Federation
+- Research Computing
+- Course Catalog
 apis:
-- aid: ucl:timetable
-  name: UCL API Timetable
-  description: >-
-    Fetch personal and module timetables with various filters for departments, modules, and student groups.
-    Part of the UCL API platform.
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/timetable
-  tags:
-  - Timetable
-  - Courses
-  - Education
-  properties:
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:search
-  name: UCL API Search
-  description: >-
-    Search for staff (people) directory information within UCL. Part of the UCL API platform.
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/search
-  tags:
-  - Search
-  - Directory
-  - People
-  - Education
-  properties:
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:workspaces
-  name: UCL API Workspaces
-  description: >-
-    Fetch library study-space (workspace) availability, sensor data, and maps throughout UCL; availability
-    is updated approximately every two minutes.
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/workspaces
-  tags:
-  - Workspaces
-  - Library
-  - Sensors
-  - Education
-  properties:
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:resources
-  name: UCL API Resources
-  description: Fetch desktop / computer availability throughout UCL. Part of the UCL API platform.
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/resources
-  tags:
-  - Resources
-  - Facilities
-  - Education
-  properties:
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:oauth
-  name: UCL API OAuth
-  description: >-
-    Authenticate and authorise applications for UCL users via OAuth2; tokens are issued through the UCL
-    login system and used across all UCL API services.
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/oauth
-  tags:
-  - OAuth
-  - Authentication
-  - Identity
-  - Education
-  properties:
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Authentication
-    url: https://uclapi.com/docs
 - aid: ucl:discovery-oai
-  name: UCL Discovery (OAI-PMH)
-  description: >-
-    UCL Discovery is UCL's open-access institutional repository of research outputs. It exposes an OAI-PMH
-    metadata-harvesting endpoint (EPrints). Access to the OAI endpoint was protected (HTTP 403) at the
-    time of review.
+  name: UCL Discovery — OAI-PMH
+  description: UCL Discovery is UCL's open-access institutional repository of research outputs, running EPrints
+    on UCL's own registrable domain, and it exposes an OAI-PMH 2.0 metadata-harvesting endpoint at discovery.ucl.ac.uk/cgi/oai2.
+    This is the only surface in this profile whose host, software deployment and endpoint are all UCL's. A
+    direct probe on 2026-08-19 was answered with a Cloudflare challenge interstitial (HTTP 403, 'Just a moment...')
+    rather than an OAI-PMH response, so the endpoint is live but not readable unattended; the endpoint address
+    and the EPrints software are independently confirmed by UCL's entry in the re3data repository registry
+    (r3d100012417). No OpenAPI or other machine-readable contract is published for it.
   humanURL: https://discovery.ucl.ac.uk/
+  baseURL: https://discovery.ucl.ac.uk/cgi/oai2
   tags:
   - Repository
   - OAI-PMH
   - Open Access
   - Research
+  - EPrints
   properties:
   - type: Documentation
     url: https://discovery.ucl.ac.uk/
+  - type: Registry
+    url: https://www.re3data.org/repository/r3d100012417
+  - type: Conformance
+    url: conformance/ucl-education-standards-conformance.yml
+  x-operator: institution
+  x-operator-evidence: Host discovery.ucl.ac.uk is under UCL's own registrable domain (Cloudflare-proxied,
+    UCL-controlled DNS). re3data r3d100012417 records softwareName=EPrints and the OAI-PMH base URL on the
+    same host.
+  x-probe:
+    url: https://discovery.ucl.ac.uk/cgi/oai2?verb=Identify
+    status: 403
+    note: Cloudflare challenge — live, not dead
+    checked: '2026-08-19'
 - aid: ucl:research-data-repository
-  name: UCL Research Data Repository
-  description: >-
-    The UCL Research Data Repository is UCL's institutional data repository, built on Figshare, used to
-    deposit, archive, publish and assign DOIs to research datasets and outputs. Figshare exposes a public
-    REST/OAI API; specifics are governed by the underlying Figshare platform.
+  name: UCL Research Data Repository (Figshare tenancy)
+  description: 'The UCL Research Data Repository is UCL''s institutional data repository, used to deposit,
+    archive, publish and mint DOIs for research datasets. The data, the curation policy and the DOI prefix
+    (10.5522, registered to UCL as DataCite client BL.UCLD) are UCL''s. The platform is not: rdr.ucl.ac.uk
+    CNAMEs directly to figshare.com, re3data records softwareName=figshare, and UCL''s holdings are addressed
+    on Figshare''s shared host as api.figshare.com/v2/articles?institution=549 and api.figshare.com/v2/oai?set=portal_549.
+    Figshare''s contract is deliberately NOT saved under this institution — it is one document that 25 universities
+    in this catalog were previously credited with authoring. The tenancy itself is recorded here because it
+    is a real institutional fact and one of UCL''s few remaining programmable surfaces.'
   humanURL: https://rdr.ucl.ac.uk/
   tags:
   - Research Data
   - Repository
   - Figshare
   - Open Data
+  - DOI
   properties:
   - type: Documentation
+    url: https://www.ucl.ac.uk/library/open-science-research-support/research-data-management
+  - type: Registry
+    url: https://www.re3data.org/repository/r3d100013090
+  x-operator: tenant
+  x-operator-evidence: 'DNS: rdr.ucl.ac.uk -> figshare.com. re3data r3d100013090 softwareName=figshare; APIs
+    listed on api.figshare.com/v2 with institution=549 / set=portal_549.'
+  x-vendor: Figshare
+  x-probe:
     url: https://rdr.ucl.ac.uk/
-- aid: ucl:ucl-analytics-api
-  name: UCL Analytics API
-  description: View analytics and stats about your app or API services
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
+    status: 202
+    note: 'AWS WAF challenge (x-amzn-waf-action: challenge), empty body — live, not dead'
+    checked: '2026-08-19'
+- aid: ucl:profiles
+  name: UCL Profiles / IRIS (Symplectic Elements tenancy)
+  description: 'UCL Profiles is UCL''s public research-information and researcher-profile directory, successor
+    to the IRIS research portal (iris.ucl.ac.uk now redirects to it). It is a Symplectic Elements Discovery
+    tenancy: profiles.ucl.ac.uk CNAMEs to ucl.discovery.symplectic.org. The publication, grant and researcher
+    records are UCL''s; the platform, the data model and any API surface belong to Symplectic (Digital Science).
+    No institution-operated contract is published for it, and no Symplectic contract is saved under UCL.'
+  humanURL: https://profiles.ucl.ac.uk/
   tags:
-  - Analytics
+  - Research Information
+  - Researcher Profiles
+  - CRIS
+  - Symplectic
   properties:
-  - type: OpenAPI
-    url: openapi/ucl-analytics-api-openapi.yml
   - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:ucl-oauth-api
-  name: UCL OAuth API
-  description: Authenticate and authorise applications for users
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
+    url: https://profiles.ucl.ac.uk/
+  x-operator: tenant
+  x-operator-evidence: 'DNS: profiles.ucl.ac.uk -> ucl.discovery.symplectic.org -> lb.eu.discovery.symplectic.org.'
+  x-vendor: Symplectic (Digital Science)
+  x-probe:
+    url: https://profiles.ucl.ac.uk/
+    status: 200
+    note: JavaScript-rendered shell, 3.3KB
+    checked: '2026-08-19'
+- aid: ucl:library-discovery
+  name: UCL Library Discovery (Ex Libris Primo VE tenancy)
+  description: 'UCL Library Services runs its catalog and discovery layer on Ex Libris Primo VE, at an institution-specific
+    view on Ex Libris'' shared host: ucl.primo.exlibrisgroup.com with vid=44UCL_INST:UCL_VU2. The 44UCL_INST
+    institution code and the holdings are UCL''s; the discovery API surface is Ex Libris'', shared with every
+    other Primo VE customer, and is not saved under this institution.'
+  humanURL: https://ucl.primo.exlibrisgroup.com/discovery/search?vid=44UCL_INST:UCL_VU2
   tags:
-  - OAuth
+  - Library
+  - Discovery
+  - Catalog
+  - Ex Libris
+  - Primo
   properties:
-  - type: OpenAPI
-    url: openapi/ucl-oauth-api-openapi.yml
   - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:ucl-resources-api
-  name: UCL Resources API
-  description: Fetch desktop availability throughout UCL
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
-  tags:
-  - Resources
-  properties:
-  - type: OpenAPI
-    url: openapi/ucl-resources-api-openapi.yml
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:ucl-room-bookings-api
-  name: UCL Room Bookings API
-  description: Fetch details of room bookings within UCL
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
-  tags:
-  - Room Bookings
-  properties:
-  - type: OpenAPI
-    url: openapi/ucl-room-bookings-api-openapi.yml
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:ucl-search-api
-  name: UCL Search API
-  description: Search for staff in UCL
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
+    url: https://www.ucl.ac.uk/library/
+  x-operator: tenant
+  x-operator-evidence: Institution-specific view (vid=44UCL_INST:UCL_VU2) on the vendor-shared host ucl.primo.exlibrisgroup.com.
+  x-vendor: Ex Libris (Clarivate)
+  x-probe:
+    url: https://ucl.primo.exlibrisgroup.com/discovery/search?vid=44UCL_INST:UCL_VU2
+    status: 200
+    checked: '2026-08-19'
+- aid: ucl:site-search
+  name: UCL site search (Funnelback tenancy)
+  description: 'UCL''s website and module-catalogue search runs on Funnelback (Squiz) at search2.ucl.ac.uk,
+    on UCL''s own registrable domain. It is the only surface in this profile that returns a machine-readable
+    JSON response to an unauthenticated request: /s/search.json?query=&collection= answered HTTP 200 with a
+    Funnelback result packet on 2026-08-19. The index and its content are UCL''s; the request and response
+    contract is Funnelback''s product API, identical across every Funnelback customer, so it is recorded as
+    a tenancy and the contract is not saved under UCL. UCL publishes no documentation presenting this as a
+    public API.'
+  humanURL: https://search2.ucl.ac.uk/
+  baseURL: https://search2.ucl.ac.uk/s/search.json
   tags:
   - Search
+  - Funnelback
+  - Website
   properties:
-  - type: OpenAPI
-    url: openapi/ucl-search-api-openapi.yml
   - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:ucl-timetable-api
-  name: UCL Timetable API
-  description: Fetch timetables with various filters for various groups
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
+    url: https://www.ucl.ac.uk/module-catalogue/
+  x-operator: tenant
+  x-operator-evidence: Host is UCL's (search2.ucl.ac.uk, Cloudflare-proxied) but the /s/search.json request
+    and response contract is the Funnelback product API, not UCL-authored. No UCL documentation presents it
+    as a public API.
+  x-vendor: Funnelback (Squiz)
+  x-probe:
+    url: https://search2.ucl.ac.uk/s/search.json?query=api&collection=website-meta
+    status: 200
+    note: Funnelback result packet returned
+    checked: '2026-08-19'
+- aid: ucl:identity-federation
+  name: UCL Identity Provider — UK Access Management Federation
+  description: 'UCL is a registered Identity Provider in the UK Access Management Federation (Jisc), and by
+    extension in eduGAIN. Its SAML metadata is published in the federation''s machine-readable aggregate under
+    entityID https://shib-idp.ucl.ac.uk/shibboleth, carrying OrganizationDisplayName ''UCL (University College
+    London)'', a Shibboleth shibmd:Scope of ucl.ac.uk, and a registrationInstant of 2009-12-04. This is the
+    surface class a university is supposed to operate by definition, and UCL is the case that complicates the
+    rule: the SingleSignOnService locations in UCL''s own federation metadata do not point at any UCL host,
+    they point at login.openathens.net/saml/2/sso/ucl.ac.uk/c/ukfed. The entityID, the scope and the federation
+    membership are UCL''s; the SAML service is operated by OpenAthens on an institution-specific path, so the
+    operator is recorded as tenant rather than institution.'
+  humanURL: https://www.ukfederation.org.uk/
+  baseURL: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
   tags:
-  - Timetable
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - eduGAIN
+  - Single Sign-On
   properties:
-  - type: OpenAPI
-    url: openapi/ucl-timetable-api-openapi.yml
   - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
-- aid: ucl:ucl-workspaces-api
-  name: UCL Workspaces API
-  description: Fetch workspace availablility and maps throughout UCL
-  humanURL: https://uclapi.com/docs
-  baseURL: https://uclapi.com/roombookings
-  tags:
-  - Workspaces
-  properties:
-  - type: OpenAPI
-    url: openapi/ucl-workspaces-api-openapi.yml
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: Signup
-    url: https://uclapi.com/
+    url: https://www.ukfederation.org.uk/
+  - type: Conformance
+    url: conformance/ucl-education-standards-conformance.yml
+  x-operator: tenant
+  x-operator-evidence: entityID is under ucl.ac.uk and the federation registration is UCL's own, but IDPSSODescriptor/SingleSignOnService
+    resolves to login.openathens.net, not to a UCL host. shib-idp.ucl.ac.uk does not resolve to a reachable
+    service (it is an identifier, not an endpoint).
+  x-vendor: OpenAthens (Jisc / EBSCO)
+  x-probe:
+    url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+    status: 200
+    note: 11,113 entities scanned; exactly one UCL IdP entity found
+    checked: '2026-08-19'
 common:
-  - type: License
-    name: MIT
-    url: https://github.com/uclapi/uclapi/blob/master/LICENSE
-  - type: AgenticAccess
-    url: agentic-access/ucl-agentic-access.yml
-  - type: DomainSecurity
-    url: security/ucl-domain-security.yml
-  - type: Authentication
-    url: authentication/ucl-authentication.yml
-  - type: OAuthScopes
-    url: scopes/ucl-scopes.yml
-  - type: Website
-    url: https://www.ucl.ac.uk/
-  - type: DeveloperPortal
-    url: https://uclapi.com/
-  - type: Documentation
-    url: https://uclapi.com/docs
-  - type: GitHub
-    url: https://github.com/uclapi
-  - type: SourceCode
-    url: https://github.com/uclapi/uclapi
-  - type: OpenAPI
-    url: https://github.com/uclapi/uclapi-openapi
-  - type: OpenAPI
-    url: openapi/_original/ucl-uclapi.yaml
-  - url: https://medium.com/feed/ucl-api
-    type: Blog
-  - type: JSONSchema
-    url: json-schema/
-  - type: JSONStructure
-    url: json-structure/
-  - type: Examples
-    url: examples/
-  - type: Rules
-    url: rules/ucl-rules.yml
-  - type: Vocabulary
-    url: vocabulary/ucl-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/ucl-context.jsonld
-  - type: LinkedIn
-    url: https://uk.linkedin.com/company/uclapi
-  - type: Plans
-    url: plans/ucl-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/ucl-rate-limits.yml
-  - type: FinOps
-    url: finops/ucl-finops.yml
-  - type: Review
-    url: review.yml
+- type: Website
+  url: https://www.ucl.ac.uk/
+- type: GitHubOrganization
+  url: https://github.com/UCL
+- type: GitHub
+  url: https://github.com/uclapi
+- type: SourceCode
+  url: https://github.com/uclapi/uclapi
+- type: License
+  name: MIT
+  url: https://github.com/uclapi/uclapi/blob/master/LICENSE
+- type: ResearchRepository
+  name: UCL Discovery (open access, institution-operated)
+  url: https://discovery.ucl.ac.uk/
+- type: ResearchRepository
+  name: UCL Research Data Repository (Figshare tenancy)
+  url: https://rdr.ucl.ac.uk/
+- type: LibraryCatalog
+  name: UCL Library Discovery (Ex Libris Primo VE tenancy)
+  url: https://ucl.primo.exlibrisgroup.com/discovery/search?vid=44UCL_INST:UCL_VU2
+- type: CourseCatalog
+  name: UCL Module Catalogue
+  url: https://www.ucl.ac.uk/module-catalogue/
+- type: IdentityFederation
+  name: UK Access Management Federation metadata (entityID https://shib-idp.ucl.ac.uk/shibboleth)
+  url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+- type: ResearchComputing
+  name: UCL Research Computing documentation (Myriad, Kathleen)
+  url: https://www.rc.ucl.ac.uk/docs/
+- type: ResearchComputing
+  name: UCL Centre for Advanced Research Computing
+  url: https://www.ucl.ac.uk/advanced-research-computing
+- type: AIPolicy
+  name: UCL Generative AI Hub
+  url: https://www.ucl.ac.uk/teaching-learning/generative-ai-hub
+- type: Support
+  url: https://www.ucl.ac.uk/isd/
+- type: Documentation
+  url: https://www.ucl.ac.uk/library/open-science-research-support/research-data-management
+- type: PrivacyPolicy
+  url: https://www.ucl.ac.uk/legal-services/privacy
+- type: DataProtection
+  url: https://www.ucl.ac.uk/data-protection/
+- type: Blog
+  url: https://medium.com/feed/ucl-api
+- type: LinkedIn
+  url: https://uk.linkedin.com/company/uclapi
+- type: Conformance
+  url: conformance/ucl-education-standards-conformance.yml
+- type: DomainSecurity
+  url: security/ucl-domain-security.yml
+- type: Plans
+  url: plans/ucl-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ucl-rate-limits.yml
+- type: FinOps
+  url: finops/ucl-finops.yml
+- type: Review
+  url: review.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-19'
 specificationVersion: '0.23'
+x-type: university
+x-coverage:
+  state: covered
+  reason: no_institution_operated_api
+  detail: 'UCL publishes no institution-operated, publicly callable API. Its one genuinely institution-operated
+    machine-readable surface is the UCL Discovery OAI-PMH endpoint, which is live but sits behind a Cloudflare
+    challenge (403) and could not be read unattended. Every other surface found is a vendor tenancy: Figshare,
+    Symplectic, Ex Libris, Funnelback and OpenAthens. UCL API (uclapi.com), which WAS UCL''s own engineering
+    and the strongest university developer surface in this catalog, is fully retired — no TCP connection completes
+    on uclapi.com, api.uclapi.com, docs.uclapi.com or status.uclapi.com. Its 12 contracts and every artifact
+    derived from them were removed; the source repositories are kept as pointers. One further UCL-authored
+    OpenAPI exists (github.com/UCL/isenseflu-openapi, ''(c) 2019 UCL'', GPL-3.0) but it declares no servers[]
+    and every candidate deployment host is dead, so it was NOT registered as a surface. This is a correct thin
+    profile: the absence is the finding, and the score should fall accordingly.'
+  assessed: '2026-08-19'
+  method: probed
+  evidence:
+  - url: https://uclapi.com/
+    status: 0
+    note: TCP connect timeout on 443 and 80
+  - url: https://api.uclapi.com/
+    status: 0
+  - url: https://docs.uclapi.com/
+    status: 0
+  - url: https://status.uclapi.com/
+    status: 0
+  - url: https://discovery.ucl.ac.uk/cgi/oai2?verb=Identify
+    status: 403
+    note: Cloudflare challenge
+  - url: https://rdr.ucl.ac.uk/
+    status: 202
+    note: AWS WAF challenge
+  - url: https://profiles.ucl.ac.uk/
+    status: 200
+  - url: https://ucl.primo.exlibrisgroup.com/discovery/search?vid=44UCL_INST:UCL_VU2
+    status: 200
+  - url: https://search2.ucl.ac.uk/s/search.json?query=api&collection=website-meta
+    status: 200
+  - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+    status: 200
+  - url: https://api.datacite.org/clients?query=ucl
+    status: 200
+  - url: https://www.re3data.org/api/beta/repository/r3d100012417
+    status: 200
+  - url: https://data.ucl.ac.uk/
+    status: 0
+    note: no open data portal — host does not resolve to a service
+  - url: https://api.ucl.ac.uk/
+    status: 0
+    note: no central developer portal
+  - url: https://fludetector.cs.ucl.ac.uk/
+    status: 0
+    note: i-sense flu deployment dead; its UCL-authored OpenAPI not registered
+x-retired:
+- host: uclapi.com
+  verdict: dead
+  evidence: https=000, http=000
+  checked: '2026-08-19'
+  entries_removed: 12
+  note: 'DNS still resolves to an EC2 host in eu-west-2; it answers on neither 80 nor 443. The contracts were
+    the institution''s own — retired for liveness, not attribution. The OpenAPI pointer was unwired too: a
+    contract pointer with no reachable API behind it would score contract_present for a service nobody can
+    call. Source and spec repos are still public and are kept as GitHub/SourceCode pointers.'
+  source_still_published: https://github.com/uclapi/uclapi-openapi (HTTP 200)
+  source_repo: https://github.com/uclapi/uclapi (HTTP 200, pushed 2026-05-06, not archived)
+  derivatives_removed:
+    checked: '2026-08-19'
+    note: 'The dead-host pass removed the 7 OpenAPIs and their json-schema/, examples/, rules/, vocabulary/,
+      scopes/, authentication/, json-ld/ and json-structure/ derivatives, but left two sets behind. Both descend
+      from the same retired contract and were removed in this pass for consistency: every one of the 14 Postman/OpenCollection
+      files targets the dead uclapi.com host, and the agentic-access artifact declared `source: openapi/ucl-uclapi.yaml`,
+      a file that no longer exists, while describing x-agentic-access execution contracts for 29 operations
+      nobody can call. Leaving them would have credited UCL with a callable collection set and an agent-governance
+      posture for a retired service.'
+    paths:
+    - collections/ (14 files + .refine-report.opencollection.json)
+    - agentic-access/ucl-agentic-access.yml
+x-category: Public Research University
