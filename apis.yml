@@ -19,6 +19,19 @@ description: 'University College London (UCL) is a public research university in
   vendors run the services underneath them. No central developer portal, no open data portal and no publicly
   callable institution-operated API were found in this pass.'
 type: Index
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: false
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -231,6 +244,12 @@ apis:
     note: 11,113 entities scanned; exactly one UCL IdP entity found
     checked: '2026-08-19'
 common:
+- type: IssueTracker
+  url: https://github.com/uclapi/uclapi/issues
+- type: Releases
+  url: https://github.com/uclapi/uclapi/releases
+- type: ContributionGuide
+  url: https://github.com/uclapi/uclapi/blob/master/CONTRIBUTING.md
 - type: Website
   url: https://www.ucl.ac.uk/
 - type: GitHubOrganization
