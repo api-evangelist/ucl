@@ -1,0 +1,152 @@
+# Domain-standard conformance — UCL — education regulatory regime (Kin Score 0.12.0)
+# Reward-only. Every entry below is a standard UCL was OBSERVED to conform to, with the exact
+# location the observation was made. Standards with no verified evidence are listed under
+# `not_evidenced` and are NOT claimed.
+---
+aid: ucl
+name: UCL — education regime domain-standard conformance
+description: >-
+  Conformance observations for University College London against the Kin Score `education`
+  regulatory regime standards[] set (scim, lti, oneroster, ed-fi, caliper, qti, oai-pmh,
+  shibboleth, saml, orcid, datacite, crossref). Each hit records the operator of the surface the
+  standard is implemented on, because for a university the institution and the operator are
+  frequently not the same party.
+regime: education
+generated: '2026-08-19'
+method: probed
+source: >-
+  Direct HTTP probes plus three third-party registries that publish machine-readable institutional
+  registrations: the UK Access Management Federation metadata aggregate, the re3data repository
+  registry, and the DataCite REST API.
+
+conformance:
+
+  - standard: oai-pmh
+    status: evidenced
+    x-operator: institution
+    surface: UCL Discovery
+    detail: >-
+      UCL Discovery is UCL's open-access institutional repository, running EPrints on UCL's own
+      registrable domain. It exposes an OAI-PMH v2.0 metadata-harvesting endpoint at
+      discovery.ucl.ac.uk/cgi/oai2. A direct probe of the endpoint is answered with a Cloudflare
+      interstitial (HTTP 403, "Just a moment..."), so the endpoint could not be read from here;
+      its existence and address are confirmed by UCL's own entry in the re3data registry, which
+      records the OAI-PMH base URL and the EPrints software.
+    evidence:
+      - url: https://www.re3data.org/api/beta/repository/r3d100012417
+        status: 200
+        locator: r3d:api[@apiType='OAI-PMH'] = https://discovery.ucl.ac.uk/cgi/oai2?verb=Identify
+        note: re3data record also asserts r3d:softwareName = EPrints, r3d:repositoryURL = https://discovery.ucl.ac.uk/
+      - url: https://discovery.ucl.ac.uk/cgi/oai2?verb=Identify
+        status: 403
+        note: Cloudflare challenge interstitial, not a 404 — the host answers, the endpoint is not readable unattended
+    confidence: medium
+
+  - standard: shibboleth
+    status: evidenced
+    x-operator: tenant
+    surface: UCL identity provider, UK Access Management Federation
+    detail: >-
+      UCL is a registered Identity Provider in the UK Access Management Federation (Jisc). Its
+      entityID is under UCL's own registrable domain and it asserts the scope `ucl.ac.uk`, with
+      Shibboleth metadata extensions (shibmd:Scope) present on the IDPSSODescriptor. The
+      registration is UCL's own institutional act and dates to 2009. The operator is recorded as
+      `tenant` rather than `institution` for a specific and checkable reason: the SingleSignOnService
+      locations in UCL's own federation metadata do not point at a UCL host — they point at
+      login.openathens.net, on an institution-specific path. UCL owns the entity and the scope;
+      OpenAthens runs the SAML service behind it.
+    evidence:
+      - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+        status: 200
+        locator: EntityDescriptor[@entityID='https://shib-idp.ucl.ac.uk/shibboleth']
+        observed:
+          entity_id: https://shib-idp.ucl.ac.uk/shibboleth
+          organization_display_name: UCL (University College London)
+          roles: [IDPSSODescriptor]
+          shibmd_scope: ucl.ac.uk
+          registration_instant: '2009-12-04T11:40:00Z'
+          sso_locations:
+            - https://login.openathens.net/saml/2/sso/ucl.ac.uk/c/ukfed
+            - https://login.openathens.net/saml/1/sso/ucl.ac.uk/c/ukfed
+    confidence: high
+
+  - standard: saml
+    status: evidenced
+    x-operator: tenant
+    surface: UCL identity provider, UK Access Management Federation
+    detail: >-
+      Same entity as the shibboleth hit. UCL's federation entry carries SAML 2.0
+      HTTP-Redirect and SAML 1.x AuthnRequest SingleSignOnService bindings, which is a SAML
+      conformance observation independent of the Shibboleth metadata extensions. Operator is
+      `tenant` for the same reason: the bindings resolve to OpenAthens, not to UCL.
+    evidence:
+      - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+        status: 200
+        locator: EntityDescriptor[@entityID='https://shib-idp.ucl.ac.uk/shibboleth']/IDPSSODescriptor/SingleSignOnService
+        observed:
+          bindings:
+            - urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect
+            - urn:mace:shibboleth:1.0:profiles:AuthnRequest
+    confidence: high
+
+  - standard: datacite
+    status: evidenced
+    x-operator: institution
+    surface: UCL DataCite repository client BL.UCLD
+    detail: >-
+      UCL holds its own DataCite repository client, symbol BL.UCLD, registered in 2011 under the
+      British Library consortium, named "University College London" and pointed at
+      rdr.ucl.ac.uk. DOIs minted under UCL's prefix 10.5522 were observed live on records in the
+      UCL Research Data Repository. The DOI registration and the prefix are UCL's own even though
+      the repository platform underneath is a Figshare tenancy — which is precisely why this hit
+      is `institution` while the repository surface itself is `tenant`.
+    evidence:
+      - url: https://api.datacite.org/clients?query=ucl
+        status: 200
+        locator: data[].attributes.symbol = BL.UCLD
+        observed:
+          symbol: BL.UCLD
+          name: University College London
+          year: 2011
+          url: https://rdr.ucl.ac.uk
+      - url: https://api.figshare.com/v2/articles?institution=549&page_size=1
+        status: 200
+        locator: '[0].doi'
+        observed:
+          doi_prefix: '10.5522'
+        note: >-
+          Vendor host, probed only to confirm the DOI prefix in use. No Figshare contract is
+          saved under this institution.
+    confidence: high
+
+not_evidenced:
+  - standard: scim
+    reason: no_evidence_found
+    detail: No public SCIM provisioning endpoint or documentation found on any UCL-operated host.
+  - standard: lti
+    reason: not_publicly_verifiable
+    detail: >-
+      UCL runs Moodle at moodle.ucl.ac.uk, which supports LTI, but the platform is authenticated
+      end-to-end and no LTI registration or tool-configuration artifact is publicly readable.
+      An LTI-capable VLE is not a published LTI conformance artifact and is not claimed as one.
+  - standard: oneroster
+    reason: no_evidence_found
+  - standard: ed-fi
+    reason: no_evidence_found
+    detail: Ed-Fi is a US K-12/state-agency data standard and has no expected UK HE application.
+  - standard: caliper
+    reason: no_evidence_found
+  - standard: qti
+    reason: no_evidence_found
+  - standard: orcid
+    reason: unreadable
+    detail: >-
+      UCL Profiles (profiles.ucl.ac.uk) is a Symplectic Elements Discovery tenancy that displays
+      researcher ORCID iDs, and UCL Discovery deposits are ORCID-associated, but both surfaces are
+      bot-challenged or JavaScript-rendered and no ORCID integration artifact could be read
+      unattended. Not claimed.
+  - standard: crossref
+    reason: no_evidence_found
+    detail: >-
+      UCL's research-output DOIs observed in this run are DataCite (prefix 10.5522), not Crossref.
+      Crossref DOIs on UCL-authored articles belong to the publishers, not to UCL.
