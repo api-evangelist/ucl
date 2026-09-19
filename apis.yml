@@ -140,7 +140,7 @@ apis:
   tags:
   - Research Information
   - Researcher Profiles
-  - CRIS
+  - CRI
   - Symplectic
   tags_raw:
   - Research Information
@@ -195,6 +195,10 @@ apis:
   tags:
   - Search
   - Funnelback
+  - Websites
+  tags_raw:
+  - Search
+  - Funnelback
   - Website
   properties:
   - type: Documentation
@@ -223,6 +227,12 @@ apis:
   humanURL: https://www.ukfederation.org.uk/
   baseURL: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
   tags:
+  - Identity Federation
+  - Shibboleth
+  - SAML
+  - eduGAIN
+  - SSO
+  tags_raw:
   - Identity Federation
   - Shibboleth
   - SAML
