@@ -1,46 +1,106 @@
----
 name: UCL
 description: UCL public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/ucl/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-19'
 reviews:
-  - date: '2026-06-03'
-    rating: 4
-    summary: >-
-      UCL has an unusually mature public developer presence for a university, driven
-      by UCL API (uclapi.com) — a student-built, ISD-backed, open-source, OAuth2
-      platform whose documentation portal (uclapi.com/docs) and dashboard (uclapi.com)
-      returned HTTP 200. A public OpenAPI spec confirms seven service groups: Room
-      Bookings, Timetable, Search, Resources, Workspaces, OAuth and Analytics; these
-      are catalogued without inventing endpoints. The api.uclapi.com host did not
-      resolve from this review environment (recorded status 0) likely due to network
-      egress restrictions, not a confirmed outage. UCL Discovery's OAI-PMH endpoint
-      returned 403 (protected). The Figshare-powered Research Data Repository
-      returned 202. No fabricated endpoints or credentials; access to UCL API
-      requires UCL affiliation and is free of charge.
-    endpoints:
-      - url: https://uclapi.com/
-        status: 200
-        note: UCL API developer portal / dashboard — live.
-      - url: https://uclapi.com/docs
-        status: 200
-        note: Documentation portal (JS app); services confirmed via OpenAPI spec.
-      - url: https://api.uclapi.com/roombookings/rooms
-        status: 0
-        note: API host did not resolve from review environment; likely egress restriction, not confirmed down.
-      - url: https://github.com/uclapi
-        status: 200
-        note: Official UCL API GitHub org — ~40 repos, open source.
-      - url: https://raw.githubusercontent.com/uclapi/uclapi-openapi/master/uclapi.json
-        status: 200
-        note: Public OpenAPI definition listing the API service groups.
-      - url: https://www.ucl.ac.uk/
-        status: 200
-        note: Official UCL institutional website.
-      - url: https://discovery.ucl.ac.uk/cgi/oai2
-        status: 403
-        note: OAI-PMH endpoint for UCL Discovery open-access repository — protected.
-      - url: https://rdr.ucl.ac.uk/
-        status: 202
-        note: UCL Research Data Repository (Figshare-powered) — responded.
+- date: '2026-08-19'
+  rating: 2
+  method: probed
+  supersedes: '2026-06-03'
+  summary: 'Re-review under the university pipeline, which settles operator attribution before saving any contract.
+    The June 2026 review rated UCL 4 on the strength of UCL API; that rating no longer holds. UCL API''s entire
+    estate is retired — uclapi.com, api.uclapi.com, docs.uclapi.com and status.uclapi.com all fail to complete
+    a TCP connection on port 80 or 443, so the June note that api.uclapi.com''s status 0 was ''likely a network
+    egress restriction, not a confirmed outage'' is now resolved the other way: it was the leading edge of
+    a full shutdown. DNS still resolves uclapi.com to an EC2 host in eu-west-2 that answers on neither port.
+    The uclapi source repo is still public and unarchived; the uclapi-openapi repo has been archived since
+    2021. Seven OpenAPIs, fourteen collections, an agent-access contract and all derived schemas/examples/rules/vocabulary/scopes
+    were removed. What remains is one institution-operated surface (UCL Discovery''s OAI-PMH endpoint on UCL''s
+    own domain, EPrints, Cloudflare-challenged at 403) and five vendor tenancies (Figshare, Symplectic, Ex
+    Libris Primo VE, Funnelback, OpenAthens). Notably, even UCL''s UK Access Management Federation identity
+    provider — the surface class a university is supposed to operate by definition — resolves its SAML SSO
+    to login.openathens.net rather than to a UCL host. UCL owns the entityID, the ucl.ac.uk scope and the DataCite
+    prefix 10.5522; vendors run the services. No central developer portal, no open data portal and no publicly
+    callable institution-operated API were found. The lower rating is the correction working, not a regression.'
+  endpoints:
+  - url: https://uclapi.com/
+    status: 0
+    note: TCP connect timeout on 443 and 80 — was 200 in June 2026.
+  - url: https://api.uclapi.com/
+    status: 0
+    note: Host does not answer. June status 0 confirmed as a real outage.
+  - url: https://docs.uclapi.com/
+    status: 0
+    note: Documentation host dead.
+  - url: https://status.uclapi.com/
+    status: 0
+    note: Status page dead (Freshping CNAME still present).
+  - url: https://discovery.ucl.ac.uk/cgi/oai2?verb=Identify
+    status: 403
+    note: Cloudflare challenge — live, not dead. Institution-operated.
+  - url: https://rdr.ucl.ac.uk/
+    status: 202
+    note: AWS WAF challenge. CNAMEs to figshare.com — tenant.
+  - url: https://profiles.ucl.ac.uk/
+    status: 200
+    note: CNAMEs to ucl.discovery.symplectic.org — tenant.
+  - url: https://ucl.primo.exlibrisgroup.com/discovery/search?vid=44UCL_INST:UCL_VU2
+    status: 200
+    note: Ex Libris Primo VE tenancy.
+  - url: https://search2.ucl.ac.uk/s/search.json?query=api&collection=website-meta
+    status: 200
+    note: Funnelback result packet — the only unauthenticated JSON surface found. Vendor contract.
+  - url: http://metadata.ukfederation.org.uk/ukfederation-metadata.xml
+    status: 200
+    note: 11,113 entities scanned; one UCL IdP entity, SSO on OpenAthens.
+  - url: https://api.datacite.org/clients?query=ucl
+    status: 200
+    note: UCL DataCite client BL.UCLD confirmed.
+  - url: https://www.re3data.org/api/beta/repository/r3d100012417
+    status: 200
+    note: 'UCL Discovery: EPrints + OAI-PMH base URL confirmed.'
+  - url: https://data.ucl.ac.uk/
+    status: 0
+    note: No open data portal.
+  - url: https://api.ucl.ac.uk/
+    status: 0
+    note: No central developer portal.
+  - url: https://fludetector.cs.ucl.ac.uk/
+    status: 0
+    note: i-sense flu deployment dead; its UCL-authored OpenAPI not registered as a surface.
+- date: '2026-06-03'
+  rating: 4
+  summary: 'UCL has an unusually mature public developer presence for a university, driven by UCL API (uclapi.com)
+    — a student-built, ISD-backed, open-source, OAuth2 platform whose documentation portal (uclapi.com/docs)
+    and dashboard (uclapi.com) returned HTTP 200. A public OpenAPI spec confirms seven service groups: Room
+    Bookings, Timetable, Search, Resources, Workspaces, OAuth and Analytics; these are catalogued without inventing
+    endpoints. The api.uclapi.com host did not resolve from this review environment (recorded status 0) likely
+    due to network egress restrictions, not a confirmed outage. UCL Discovery''s OAI-PMH endpoint returned
+    403 (protected). The Figshare-powered Research Data Repository returned 202. No fabricated endpoints or
+    credentials; access to UCL API requires UCL affiliation and is free of charge.'
+  endpoints:
+  - url: https://uclapi.com/
+    status: 200
+    note: UCL API developer portal / dashboard — live.
+  - url: https://uclapi.com/docs
+    status: 200
+    note: Documentation portal (JS app); services confirmed via OpenAPI spec.
+  - url: https://api.uclapi.com/roombookings/rooms
+    status: 0
+    note: API host did not resolve from review environment; likely egress restriction, not confirmed down.
+  - url: https://github.com/uclapi
+    status: 200
+    note: Official UCL API GitHub org — ~40 repos, open source.
+  - url: https://raw.githubusercontent.com/uclapi/uclapi-openapi/master/uclapi.json
+    status: 200
+    note: Public OpenAPI definition listing the API service groups.
+  - url: https://www.ucl.ac.uk/
+    status: 200
+    note: Official UCL institutional website.
+  - url: https://discovery.ucl.ac.uk/cgi/oai2
+    status: 403
+    note: OAI-PMH endpoint for UCL Discovery open-access repository — protected.
+  - url: https://rdr.ucl.ac.uk/
+    status: 202
+    note: UCL Research Data Repository (Figshare-powered) — responded.
